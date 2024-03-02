@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   GradeTooLowException.hpp                           :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 15:02:45 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/02 15:47:57 by yamajid          ###   ########.fr       */
+/*   Created: 2024/02/26 23:49:40 by yamajid           #+#    #+#             */
+/*   Updated: 2024/03/02 13:47:08 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
-class GradeTooLowException: public std::exception{
+class ShrubberyCreationForm: public AForm{
       public:
-        GradeTooLowException();
-        ~GradeTooLowException();
-        GradeTooLowException& operator=(const GradeTooHighException& other);
-        GradeTooLowException(const GradeTooHighException& obj);
-        virtual const char *what() const throw()
+            ShrubberyCreationForm(std::string target);
+            ShrubberyCreationForm();
+            ~ShrubberyCreationForm();
+            ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
+            ShrubberyCreationForm(const ShrubberyCreationForm& obj);
+            void execute(Bureaucrat const & executor) const;
 };

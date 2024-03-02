@@ -5,28 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/11 15:21:23 by yamajid           #+#    #+#              #
-#    Updated: 2024/02/24 20:41:10 by yamajid          ###   ########.fr        #
+#    Created: 2024/02/26 23:49:24 by yamajid           #+#    #+#              #
+#    Updated: 2024/02/26 23:49:25 by yamajid          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 	=	Bureaucrat
-Run		=	c++ -g
-FLAGS	=	-Wall -Wextra -Werror -std=c++98
-RM		=	rm -f
-
-SRCS 	=	Bureaucrat.cpp GradeTooHighException.cpp GradeTooLowException.cpp main.cpp
-
-otherS = $(SRCS:.cpp=.o)
-
-all: $(NAME)
-
-$(NAME): $(otherS)
-	$(Run) $(FLAGS) -o $(NAME) $(otherS)
-
-clean:
-	$(RM) $(otherS)
-fclean: clean
-	$(RM) $(NAME)
-
-re: fclean all

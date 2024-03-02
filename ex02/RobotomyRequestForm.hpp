@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   GradeTooLowException.cpp                           :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 15:02:42 by yamajid           #+#    #+#             */
-/*   Updated: 2024/02/24 15:05:19 by yamajid          ###   ########.fr       */
+/*   Created: 2024/02/26 23:49:35 by yamajid           #+#    #+#             */
+/*   Updated: 2024/03/02 13:47:15 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "GradeTooLowException.hpp"
+#include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
-std::string GradeTooLowException::what(std::string name, int gradeGeven) const{
-    std::ostringstream os;
-    std::ostringstream os2;
-    
-    os << gradeGeven;
-    os << "GradeTooHighException name is " << name << " and it's grade " << os2.str() << " is out of range";  
-    return os.str();
-}
+class RobotomyRequestForm: public AForm{
+    public:
+        RobotomyRequestForm();
+        RobotomyRequestForm(std::string target);
+        ~RobotomyRequestForm();
+        RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
+        RobotomyRequestForm(const RobotomyRequestForm& obj);
+        void execute(Bureaucrat const & executor) const;
+};

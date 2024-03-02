@@ -6,48 +6,37 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:21:15 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/02 21:24:23 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/02 23:25:59 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
-#include "GradeTooLowException.hpp"
-#include "GradeTooHighException.hpp"
-    
-const char* Bureaucrat::GradeTooHighException.what() const throw(){
-    return "Grade is too low";
-}
-
-const char* Bureaucrat::GradeTooLowException.what() const throw(){
-    return "Grade is too low";
-}
-
-virtual void what(Form form, Bureaucrat Bureaucrat) const throw(){
-    std::cout << Bureaucrat.getName() << " couldn’t sign " << Form.getName() << " because " << Form.getIsSigned();
-}
-
 
 Bureaucrat::Bureaucrat(std::string nm, int gd): name(nm){
     if (gd > 0 && gd <= 150)
         grade = gd;
-    else if (gd > 150)
-        throw Bureaucrat::GradeTooLowException();
-    else
-        throw Bureaucrat::GradeTooHighException();
 }
 
 Bureaucrat::Bureaucrat(): name("Beraucrat"), grade(1){
     
 }
 
+
+void Bureaucrat::executeForm(AForm const & form){
+    if (form.getIsSigned() == true)
+        std::cout << name << " executed " << form.getName();
+    else
+        std::cout << name << " couldn't execute " << form.getName() << " because " << form.getName() << " is not signed";
+    
+}
 void Bureaucrat::signForm(Bureaucrat& Bureaucrat){
     Form Form;
     
     if (Form.getIsSigned() == true)
         std::cout << Bureaucrat.getName() << " signed " << Form.getName();
     else
-        throw Bureaucrat::NotSigned();
+        std::cout << name << " couldn't execute " << form.getName() << " because " << form.getName() << " is not signed";
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other){
@@ -75,15 +64,15 @@ int Bureaucrat::getGrade() const{
 void Bureaucrat::increment(){
     if (grade < 150)
         grade++;
-    else
-        throw Bureaucrat::GradeTooLowException();
 }
 
 void Bureaucrat::decrement(){
     if (grade > 0)
         grade--;
-    else
-        throw Bureaucrat::GradeTooHighException();
+}
+
+Bureaucrat::GradeTooLowException::what() const throw(){
+    return "Grade is too low";
 }
 
 std::ostream& operator<<(std::ostream& stream, const Bureaucrat& obj){
