@@ -6,7 +6,7 @@
 #    By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 15:21:23 by yamajid           #+#    #+#              #
-#    Updated: 2024/02/24 20:41:10 by yamajid          ###   ########.fr        #
+#    Updated: 2024/03/02 23:39:25 by yamajid          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ Run		=	c++ -g
 FLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM		=	rm -f
 
-SRCS 	=	Bureaucrat.cpp GradeTooHighException.cpp GradeTooLowException.cpp main.cpp
+SRCS 	=	Bureaucrat.cpp main.cpp
 
 otherS = $(SRCS:.cpp=.o)
 

@@ -6,7 +6,7 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:21:15 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/02 15:47:20 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/02 23:38:43 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ Bureaucrat::Bureaucrat(std::string nm, int gd): name(nm){
     else
         throw Bureaucrat::GradeTooHighException().what();
 }
+
+const char* Bureaucrat::GradeTooLowException::what() const throw(){
+    return "Grade is too low";
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw(){
+    return "Grade is too High";
+}
+
 
 Bureaucrat::Bureaucrat(): name("Beraucrat"), grade(1){
     
