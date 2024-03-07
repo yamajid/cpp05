@@ -6,25 +6,23 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:21:15 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/02 21:24:23 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/07 21:35:29 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
-#include "GradeTooLowException.hpp"
-#include "GradeTooHighException.hpp"
     
-const char* Bureaucrat::GradeTooHighException.what() const throw(){
+const char* Bureaucrat::GradeTooHighException::what() const throw(){
     return "Grade is too low";
 }
 
-const char* Bureaucrat::GradeTooLowException.what() const throw(){
+const char* Bureaucrat::GradeTooLowException::what() const throw(){
     return "Grade is too low";
 }
 
-virtual void what(Form form, Bureaucrat Bureaucrat) const throw(){
-    std::cout << Bureaucrat.getName() << " couldn’t sign " << Form.getName() << " because " << Form.getIsSigned();
+const char *Bureaucrat::NotSigned::what() const throw(){
+    return "Form is not signed";
 }
 
 
@@ -41,13 +39,13 @@ Bureaucrat::Bureaucrat(): name("Beraucrat"), grade(1){
     
 }
 
-void Bureaucrat::signForm(Bureaucrat& Bureaucrat){
-    Form Form;
-    
-    if (Form.getIsSigned() == true)
-        std::cout << Bureaucrat.getName() << " signed " << Form.getName();
-    else
-        throw Bureaucrat::NotSigned();
+void Bureaucrat::signForm(Form &Form){
+    try {
+        Form.beSigned(*this);
+        std::cout << this->getName() << " signs " << Form.getName() << std::endl;
+    } catch (std::exception& e){
+        std::cout << this->getName() << " cannot sign " << Form.getName() << " because " << e.what() << std::endl;
+    }
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other){
@@ -87,8 +85,7 @@ void Bureaucrat::decrement(){
 }
 
 std::ostream& operator<<(std::ostream& stream, const Bureaucrat& obj){
-    std::ostringstream os;
     
-    os << obj.getName() << ", Bureaucrat grade" << obj.getGrade();
-    return os;
+    stream << obj.getName() << ", Bureaucrat grade" << obj.getGrade();
+    return stream;
 }

@@ -6,19 +6,27 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 20:50:23 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/02 21:12:06 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/07 21:34:55 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
-#include "GradeTooLowException.hpp"
+#include "Bureaucrat.hpp"
 
-const char* Form::GradeTooLowException.what() const throw(){
+const char* Form::GradeTooLowExceptionForm::what() const throw(){
     return "Grade is too low";
 }
 
-const char* Form::GradeTooHighException.what() const throw(){
+const char* Form::GradeTooHighExceptionForm::what() const throw(){
     return "Grade is too high";
+}
+
+const char *Form::Signed::what() const throw(){
+    return "Form is already signed";
+}
+
+Form::Form(std::string nm, int grades, int gradex): name(nm), isSigned(false), gradeS(150), gradex(150){
+    
 }
 
 Form::Form(): name("Bureaucrat"), isSigned(false), gradeS(150), gradex(150){
@@ -29,13 +37,15 @@ Form::~Form(){
     
 }
 
+
+
 void Form::beSigned(const Bureaucrat& Bureaucrat){
-    if (Bureaucrat.getGrade() > 150)
-        throw Form::GradeTooLowException();
-    else if (Bureaucrat.getGrade() < 0)
-        throw Form::GradeTooHighException();
+    if (Bureaucrat.getGrade() > gradeS)
+        throw Form::GradeTooLowExceptionForm();
+    // else if (isSigned == true)
+    //     throw Form::Signed();
     else
-        throw Form.isSigned = true;
+        isSigned = true;
 }       
 
 
@@ -45,8 +55,7 @@ Form& Form::operator=(const Form& other){
     return *this;
 }
 
-Form::Form(const Form& obj){
-    this->isSigned = obj.isSigned;
+Form::Form(const Form& obj): name(obj.name), isSigned(obj.isSigned), gradeS(obj.gradeS), gradex(obj.gradex){
 }
 
 std::string Form::getName() const{
@@ -66,9 +75,9 @@ int  Form::getGradeX() const{
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& obj){
-    std::ostringstream os;
 
     os << obj.getName() << obj.getIsSigned() << obj.getGradeS() << obj.getGradeX();
+    return os;
 }
 
 

@@ -6,14 +6,14 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 23:49:12 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/07 23:20:19 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/01 16:54:04 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
-#include "Bureaucrat.hpp"
+#include "GradeTooLowException.hpp"
 
-AForm::AForm(const std::string name, const int grds, const int grdx): target("Bureaucrat"), isSigned(false), gradeS(grds), gradex(grdx){
+AForm::AForm(const std::string name, bool isSign, const int grds, const int grdx): target("Bureaucrat"), isSigned(false), gradeS(grds), gradex(grdx){
        
 }
 
@@ -30,38 +30,38 @@ void AForm::beSigned(const Bureaucrat& Bureaucrat){
         this->isSigned = true;  
     }
     else
-        throw Bureaucrat::GradeTooLowException();
+        throw GradeTooLowException();
 }       
 
 
 AForm& AForm::operator=(const AForm& other){
     if (this != &other)
-        *this =  other;
+        this->isSigned = other.isSigned;
     return *this;
 }
 
-AForm::AForm(const AForm& obj): target(obj.getName()), isSigned(obj.getIsSigned()), gradeS(obj.getGradeS()), gradex(obj.getGradeX()){
-    *this = obj;
+AForm::AForm(const AForm& obj){
+    this->isSigned = obj.isSigned;
 }
 
 std::string AForm::getName() const{
-    return target;
+    return getName();
 }
 
 bool AForm::getIsSigned() const{
-    return isSigned;
+    return getIsSigned();
 }
 
 int  AForm::getGradeS() const{
-    return gradeS;
+    return getGradeS();
 }
 
 int  AForm::getGradeX() const{
-    return gradex;
+    return getGradeX();
 }
 
-std::ostream& operator<<(std::ostream& os, const AForm& obj){
+std::ostream& operator<<(std::ostream& os, const Form& obj){
+    std::ostringstream os;
 
     os << obj.getName() << obj.getIsSigned() << obj.getGradeS() << obj.getGradeX();
-    return os;
 }

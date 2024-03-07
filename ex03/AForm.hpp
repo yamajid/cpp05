@@ -6,16 +6,11 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 23:49:15 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/07 23:30:18 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/02 14:01:18 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#pragma once
-
 #include "Bureaucrat.hpp"
-
-class Bureaucrat;
 
 class AForm{
     private:
@@ -24,7 +19,7 @@ class AForm{
         const int gradeS;
         const int gradex;
     public:
-        AForm(std::string name, const int grds, const int grdx);
+        AForm(std::string name, bool isSign, const int grds, const int grdx);
         AForm();
         ~AForm();
         AForm& operator=(const AForm& other);
