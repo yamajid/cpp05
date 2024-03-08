@@ -6,7 +6,7 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:08:40 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/07 23:44:21 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/08 15:29:58 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ Form *Intern::makeForm(std::string name, std::string target){
         }
         else
             throw Intern::FormNotFoundException();
-    }   
-        
+    }
+    return form;
 }
