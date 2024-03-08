@@ -6,7 +6,7 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:08:40 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/04 21:24:35 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/07 23:44:21 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,20 @@ Form *Intern::makeForm(std::string name, std::string target){
             {
                 case 0:
                     form = new ShrubberyCreationForm(target);
+                    std::cout << "Intern creates " << form->getName() << std::endl; 
                     break;
                 case 1:
                     form = new RobotomyRequestForm(target);
+                    std::cout << "Intern creates " << form->getName() << std::endl;
                     break;
                 case 2:
                     form = new PresidentialPardonForm(target);
+                    std::cout << "Intern creates " << form->getName() << std::endl;
                     break;
-                default:
-                    throw Intern::FormNotFoundException();
             }
-            std::cout << "Intern creates " << form->getName() << std::endl; 
         }
-    } 
+        else
+            throw Intern::FormNotFoundException();
+    }   
+        
 }

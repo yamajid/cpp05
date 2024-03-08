@@ -6,13 +6,21 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 23:49:38 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/03 21:59:43 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/08 02:27:50 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string tar){
+const char * ShrubberyCreationForm::ExecuteException::what() const throw(){
+    return "Cannot execute the form3\n";
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(std::string tar): AForm(tar, 145, 137){
+    
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(){
     
 }
 
@@ -30,14 +38,22 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& obj){
     *this = obj;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
-    
-}
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
-    if ((executor.getGrade() <= 145 && executor.getEx() <= 137) && getIsSigned())
-        execute;
+void ShrubberyCreationForm::executeForm(Bureaucrat const & executor) const {
+    if ((executor.getGrade() <= 145 && getIsSigned()))
+    {
+        std::ofstream file(getName() + "_shrubbery");
+        if(file.is_open())
+        {
+            file << "  ^  \n";
+            file << " / \\ \n";
+            file << "/___\\\n";
+            file.close();
+        }
+        else
+            return;
+    }
     else
-        throw ;
+        throw ExecuteException();
         
 }

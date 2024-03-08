@@ -6,7 +6,7 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 23:49:12 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/07 23:20:19 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/08 02:21:22 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ AForm::~AForm(){
 }
 
 void AForm::beSigned(const Bureaucrat& Bureaucrat){
-    if (Bureaucrat.getGrade() <= this->getGradeS() && Bureaucrat.getGrade() >= 150){
-        this->isSigned = true;  
+    if (Bureaucrat.getGrade() <= this->getGradeS() && this->isSigned == false){
+        this->isSigned = true;
     }
     else
         throw Bureaucrat::GradeTooLowException();

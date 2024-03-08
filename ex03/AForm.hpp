@@ -6,11 +6,16 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 23:49:15 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/02 14:01:18 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/08 01:06:57 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#pragma once
+
 #include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class AForm{
     private:
@@ -19,7 +24,7 @@ class AForm{
         const int gradeS;
         const int gradex;
     public:
-        AForm(std::string name, bool isSign, const int grds, const int grdx);
+        AForm(std::string name, const int grds, const int grdx);
         AForm();
         ~AForm();
         AForm& operator=(const AForm& other);
@@ -34,7 +39,7 @@ class AForm{
         std::string setGradeS() const;
         int setGradeX() const;
         int setSigned() const;
-        virtual void execute(Bureaucrat const & executor) const = 0;
+        virtual void executeForm(Bureaucrat const & executor) const = 0;
 };
 
     std::ostream& operator<<(std::ostream& os, const AForm& obj);

@@ -6,7 +6,7 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 23:49:26 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/07 23:03:21 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/08 15:21:19 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 const char* PresidentialPardonForm::PresidentialPardonException::what() const throw(){
-    return "Cannot execute the form\n";
+    return "Cannot execute the form1\n";
 }
 
 PresidentialPardonForm::PresidentialPardonForm(){
@@ -35,15 +35,15 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
     return *this;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& obj) {
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& obj){
     *this = obj;
 }
 
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
-    if ((executor.getGrade() <= 25 && executor.getGrade() <= 5) && getIsSigned())
-        std::cout << "The president has been pardoned by Zafod Beeblebrox" << std::endl;
+    if ((executor.getGrade() <= 25 && getIsSigned() == true))
+        executor.executeForm(*this);
     else
-        throw ;
+        throw PresidentialPardonException();
         
 }

@@ -6,7 +6,7 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 20:50:27 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/07 21:44:19 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/08 15:07:25 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ class Form{
         Form& operator=(const Form& other);
         Form(const Form& obj);
         Form(std::string nm, int grades, int gradex);
-        std::string getName() const;
+        const std::string getName() const;
         bool getIsSigned() const;
-        int getGradeS() const;
-        int getGradeX() const;
+        const int getGradeS() const;
+        const int getGradeX() const;
         void beSigned(const Bureaucrat& Bureaucrat);
 };
 

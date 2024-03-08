@@ -6,7 +6,7 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:21:15 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/07 16:30:10 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/08 14:56:55 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ Bureaucrat::~Bureaucrat(){
     
 }
 
-std::string Bureaucrat::getName() const{
+const std::string Bureaucrat::getName() const{
     return name;
 }
 

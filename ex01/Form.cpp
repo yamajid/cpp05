@@ -6,7 +6,7 @@
 /*   By: yamajid <yamajid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 20:50:23 by yamajid           #+#    #+#             */
-/*   Updated: 2024/03/07 21:34:55 by yamajid          ###   ########.fr       */
+/*   Updated: 2024/03/08 15:08:31 by yamajid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,16 @@ const char *Form::Signed::what() const throw(){
     return "Form is already signed";
 }
 
-Form::Form(std::string nm, int grades, int gradex): name(nm), isSigned(false), gradeS(150), gradex(150){
+Form::Form(std::string nm, int grades, int gradex): name(nm), isSigned(false){
+    if (gradeS <= 0 || gradex <= 0)
+        throw Form::GradeTooHighExceptionForm();
+    else if (gradeS > 150 || gradex > 150)
+        throw Form::GradeTooLowExceptionForm();
+    else
+    {
+        gradeS = grades;
+        gradex = gradex;
+    }
     
 }
 
@@ -42,8 +51,6 @@ Form::~Form(){
 void Form::beSigned(const Bureaucrat& Bureaucrat){
     if (Bureaucrat.getGrade() > gradeS)
         throw Form::GradeTooLowExceptionForm();
-    // else if (isSigned == true)
-    //     throw Form::Signed();
     else
         isSigned = true;
 }       
@@ -58,7 +65,7 @@ Form& Form::operator=(const Form& other){
 Form::Form(const Form& obj): name(obj.name), isSigned(obj.isSigned), gradeS(obj.gradeS), gradex(obj.gradex){
 }
 
-std::string Form::getName() const{
+const std::string Form::getName() const{
     return name;
 }
 
@@ -66,17 +73,17 @@ bool Form::getIsSigned() const{
     return isSigned;
 }
 
-int  Form::getGradeS() const{
+const int  Form::getGradeS() const{
     return gradeS;
 }
 
-int  Form::getGradeX() const{
+const int  Form::getGradeX() const{
     return gradex;
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& obj){
 
-    os << obj.getName() << obj.getIsSigned() << obj.getGradeS() << obj.getGradeX();
+    os << obj.getName() << " " << obj.getIsSigned() << " "  << obj.getGradeS() << " "  << obj.getGradeX();
     return os;
 }
 
